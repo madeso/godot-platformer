@@ -1,5 +1,118 @@
-[gd_scene format=2]
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://gfx/sprites/player/player-idle-1.png" type="Texture" id=2]
+[ext_resource path="res://gfx/sprites/player/player-idle-2.png" type="Texture" id=3]
+[ext_resource path="res://gfx/sprites/player/player-idle-3.png" type="Texture" id=4]
+[ext_resource path="res://gfx/sprites/player/player-idle-4.png" type="Texture" id=5]
+[ext_resource path="res://gfx/sprites/player/player-run-1.png" type="Texture" id=6]
+[ext_resource path="res://gfx/sprites/player/player-run-2.png" type="Texture" id=7]
+[ext_resource path="res://gfx/sprites/player/player-run-3.png" type="Texture" id=8]
+[ext_resource path="res://gfx/sprites/player/player-run-4.png" type="Texture" id=9]
+[ext_resource path="res://gfx/sprites/player/player-run-5.png" type="Texture" id=10]
+[ext_resource path="res://gfx/sprites/player/player-run-6.png" type="Texture" id=11]
+[ext_resource path="res://gfx/sprites/player/player-crouch-1.png" type="Texture" id=12]
+[ext_resource path="res://gfx/sprites/player/player-crouch-2.png" type="Texture" id=13]
+[ext_resource path="res://gfx/sprites/player/player-climb-1.png" type="Texture" id=14]
+[ext_resource path="res://gfx/sprites/player/player-climb-2.png" type="Texture" id=15]
+[ext_resource path="res://gfx/sprites/player/player-climb-3.png" type="Texture" id=16]
+[ext_resource path="res://gfx/sprites/player/player-hurt-1.png" type="Texture" id=17]
+[ext_resource path="res://gfx/sprites/player/player-hurt-2.png" type="Texture" id=18]
+[ext_resource path="res://gfx/sprites/player/player-jump-2.png" type="Texture" id=19]
+[ext_resource path="res://gfx/sprites/player/player-jump-1.png" type="Texture" id=20]
+[ext_resource path="res://Tileset.tres" type="TileSet" id=21]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "Run",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "Crouch",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "Climb",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "Hurt",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "Fall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 20 ) ],
+"loop": true,
+"name": "Jump",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 9.64428, 16 )
 
 [node name="Root" type="Node" index="0"]
+
+[node name="Player" type="KinematicBody2D" parent="." index="0"]
+
+position = Vector2( 148.545, 53.8307 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="AnimatedSprite" parent="Player" index="0"]
+
+frames = SubResource( 1 )
+animation = "Idle"
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" index="1"]
+
+shape = SubResource( 2 )
+
+[node name="TileMap" type="TileMap" parent="." index="1"]
+
+mode = 0
+tile_set = ExtResource( 21 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 524301, 0, 0, 524302, 1, 0, 524303, 1, 0, 524304, 2, 0, 589837, 3, 0, 589838, 4, 0, 589839, 4, 0, 589840, 5, 0, 655373, 3, 0, 655374, 4, 0, 655375, 4, 0, 655376, 5, 0, 720902, 0, 0, 720903, 1, 0, 720904, 1, 0, 720905, 1, 0, 720906, 1, 0, 720907, 1, 0, 720908, 2, 0, 720909, 3, 0, 720910, 4, 0, 720911, 4, 0, 720912, 5, 0, 786438, 3, 0, 786439, 4, 0, 786440, 4, 0, 786441, 4, 0, 786442, 4, 0, 786443, 4, 0, 786444, 5, 0, 786445, 3, 0, 786446, 4, 0, 786447, 4, 0, 786448, 5, 0, 851974, 6, 0, 851975, 7, 0, 851976, 7, 0, 851977, 7, 0, 851978, 7, 0, 851979, 7, 0, 851980, 8, 0, 851981, 6, 0, 851982, 7, 0, 851983, 7, 0, 851984, 8, 0 )
+_sections_unfolded = [ "Cell" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 

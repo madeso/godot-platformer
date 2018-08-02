@@ -1,2 +1,2 @@
 # godot-platformer
-basic 2d plaformer game thing
+basic 2d platformer game thing

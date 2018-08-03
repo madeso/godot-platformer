@@ -2,7 +2,12 @@ extends KinematicBody2D
 
 const UP = Vector2(0, -1)
 
-const SPEED = 60
+const MAX_SPEED = 60
+const ACCELERATION = 100
+const FRICTION = 100
+const CROUCH_FRICTION = 25
+const AIR_FRICTION = 10
+
 const GRAVITY = 260
 const JUMP_SPEED = -90
 const JUMP_TIME = 0.3
@@ -52,19 +57,25 @@ func _physics_process(delta):
 	var input_jump_hold = Input.is_action_pressed("ui_up")
 	
 	if input_left and not input_right and not input_crouch:
-		movement.x = -SPEED
+		movement.x = max(movement.x-ACCELERATION*delta, -MAX_SPEED)
 		$Sprite.flip_h = true
 		if on_floor:
 			moved = true
 	elif input_right and not input_left and not input_crouch:
-		movement.x = SPEED
+		movement.x = min(movement.x+ACCELERATION*delta, MAX_SPEED)
 		$Sprite.flip_h = false
 		if on_floor:
 			moved = true
 	else:
+		var friction = FRICTION
 		if input_crouch:
 			crouch_timer = 0
-		movement.x = 0
+			friction = CROUCH_FRICTION
+		if not on_floor:
+			friction = AIR_FRICTION
+		# do friction
+		movement.x = sign(movement.x) * max(abs(movement.x)-friction*delta, 0)
+		
 		if input_left and not input_right:
 			$Sprite.flip_h = true
 		elif input_right and not input_left:
@@ -108,7 +119,7 @@ func _physics_process(delta):
 		else:
 			jump_timer = JUMP_TIME + 1
 	
-	var new_movement = move_and_slide(movement, UP, 2)
+	var new_movement = move_and_slide(movement, UP, 0.1)
 	movement.x = new_movement.x
 	if is_on_floor():
 		on_floor_timer = FLOOR_TIMER
@@ -116,5 +127,5 @@ func _physics_process(delta):
 		if on_floor_timer > -1:
 			on_floor_timer -= delta
 	
-	$Label.text = "  %3.3f %3.3f %3.3f" % [movement.y, jump_timer, crouch_timer]
+	$Label.text = "  %3.3f %d" % [movement.x, sign(movement.x)]
 	

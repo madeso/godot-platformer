@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://gfx/sprites/player/player-idle-1.png" type="Texture" id=2]
@@ -20,7 +20,11 @@
 [ext_resource path="res://gfx/sprites/player/player-hurt-2.png" type="Texture" id=18]
 [ext_resource path="res://gfx/sprites/player/player-jump-2.png" type="Texture" id=19]
 [ext_resource path="res://gfx/sprites/player/player-jump-1.png" type="Texture" id=20]
-[ext_resource path="res://Tileset.tres" type="TileSet" id=21]
+[ext_resource path="res://sfx/jump1.wav" type="AudioStream" id=21]
+[ext_resource path="res://sfx/jump2.wav" type="AudioStream" id=22]
+[ext_resource path="res://sfx/super1.wav" type="AudioStream" id=23]
+[ext_resource path="res://sfx/super2.wav" type="AudioStream" id=24]
+[ext_resource path="res://Tileset.tres" type="TileSet" id=25]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -109,10 +113,46 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="JumpSfx" type="AudioStreamPlayer" parent="Player" index="3"]
+
+stream = ExtResource( 21 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="MultiJumpSfx" type="AudioStreamPlayer" parent="Player" index="4"]
+
+stream = ExtResource( 22 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="JumpWallSfx" type="AudioStreamPlayer" parent="Player" index="5"]
+
+stream = ExtResource( 23 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="JumpCrouch" type="AudioStreamPlayer" parent="Player" index="6"]
+
+stream = ExtResource( 24 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
 [node name="TileMap" type="TileMap" parent="." index="1"]
 
 mode = 0
-tile_set = ExtResource( 21 )
+tile_set = ExtResource( 25 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )

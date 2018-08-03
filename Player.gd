@@ -5,7 +5,7 @@ const UP = Vector2(0, -1)
 const MAX_SPEED = 80
 const ACCELERATION = 200
 const AIR_ACCELERATION = 25
-const FRICTION = 100
+const FRICTION = 170
 const CROUCH_FRICTION = 25
 const AIR_FRICTION = 10
 
@@ -19,7 +19,7 @@ const CROUCH_TIMER = 0.2
 # single double jump, less powerful than standard jump
 const MULTI_JUMPS = 1
 const MULTI_JUMP_TIMER = 0.2
-const MULTI_JUMP_SPEED_CHECK = 20
+const MULTI_JUMP_SPEED_CHECK = 30
 
 const WALL_JUMP_HOR_SPEED = 60
 
@@ -125,7 +125,9 @@ func _physics_process(delta):
 			do_jump = true
 			if crouch_timer < CROUCH_TIMER:
 				jump_timer = -CROUCH_JUMP_EXTRA_TIME
+				$JumpCrouch.play()
 			else:
+				$JumpSfx.play()
 				jump_timer = 0
 		elif on_wall:
 			var dir = -1
@@ -134,11 +136,12 @@ func _physics_process(delta):
 			movement.x = dir * WALL_JUMP_HOR_SPEED
 			do_jump = true
 			jump_timer = 0
-			print("walljump")
+			$JumpWallSfx.play()
 		elif multi_jump > 0 and abs(movement.y) < MULTI_JUMP_SPEED_CHECK:
 			multi_jump -= 1
 			do_jump = true
 			jump_timer = MULTI_JUMP_TIMER
+			$MultiJumpSfx.play()
 		else:
 			if multi_jump > 0:
 				# print(abs(movement.y))

@@ -21,6 +21,8 @@ const MULTI_JUMPS = 1
 const MULTI_JUMP_TIMER = 0.2
 const MULTI_JUMP_SPEED_CHECK = 20
 
+const WALL_JUMP_HOR_SPEED = 60
+
 var movement = Vector2()
 var last_anim = 0
 var on_floor_timer = 0
@@ -123,8 +125,15 @@ func _physics_process(delta):
 				jump_timer = -CROUCH_JUMP_EXTRA_TIME
 			else:
 				jump_timer = 0
+		elif is_on_wall():
+			var dir = -1
+			if $Sprite.flip_h:
+				dir = 1
+			movement.x = dir * WALL_JUMP_HOR_SPEED
+			do_jump = true
 		elif multi_jump > 0 and abs(movement.y) < MULTI_JUMP_SPEED_CHECK:
 			multi_jump -= 1
+			do_jump = true
 			jump_timer = MULTI_JUMP_TIMER
 		else:
 			if multi_jump > 0:

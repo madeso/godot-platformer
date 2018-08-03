@@ -40,20 +40,29 @@ func _physics_process(delta):
 	
 	var moved = false
 	
-	if Input.is_action_pressed("ui_left"):
+	var input_left = Input.is_action_pressed("ui_left")
+	var input_right = Input.is_action_pressed("ui_right")
+	var input_crouch = Input.is_action_pressed("ui_down")
+	var input_jump = Input.is_action_just_pressed("ui_up")
+	
+	if input_left and not input_right and not input_crouch:
 		movement.x = -SPEED
 		$Sprite.flip_h = true
 		if on_floor:
 			moved = true
-	elif Input.is_action_pressed("ui_right"):
+	elif input_right and not input_left and not input_crouch:
 		movement.x = SPEED
 		$Sprite.flip_h = false
 		if on_floor:
 			moved = true
 	else:
 		movement.x = 0
+		if input_left and not input_right:
+			$Sprite.flip_h = true
+		elif input_right and not input_left:
+			$Sprite.flip_h = false
 	
-	if Input.is_action_pressed("ui_down") and on_floor:
+	if input_crouch and on_floor:
 		set_anim(3)
 	else:
 		if on_floor:
@@ -68,7 +77,7 @@ func _physics_process(delta):
 				set_anim(5)
 	
 	if on_floor:
-		if Input.is_action_just_pressed("ui_up"):
+		if input_jump:
 			movement.y = JUMP_SPEED
 			on_floor_timer = -1
 	

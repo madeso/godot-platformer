@@ -49,6 +49,10 @@ func set_anim(anim):
 		$Sprite.animation = "Jump"
 	if anim == 5:
 		$Sprite.animation = "Fall"
+
+func play_sound(sound):
+	# sound.play()
+	pass
 	
 func _physics_process(delta):
 	var on_floor = on_floor_timer > 0
@@ -125,9 +129,9 @@ func _physics_process(delta):
 			do_jump = true
 			if crouch_timer < CROUCH_TIMER:
 				jump_timer = -CROUCH_JUMP_EXTRA_TIME
-				$JumpCrouch.play()
+				play_sound($JumpCrouch)
 			else:
-				$JumpSfx.play()
+				play_sound($JumpSfx)
 				jump_timer = 0
 		elif on_wall:
 			var dir = -1
@@ -136,12 +140,12 @@ func _physics_process(delta):
 			movement.x = dir * WALL_JUMP_HOR_SPEED
 			do_jump = true
 			jump_timer = 0
-			$JumpWallSfx.play()
+			play_sound($JumpWallSfx)
 		elif multi_jump > 0 and abs(movement.y) < MULTI_JUMP_SPEED_CHECK:
 			multi_jump -= 1
 			do_jump = true
 			jump_timer = MULTI_JUMP_TIMER
-			$MultiJumpSfx.play()
+			play_sound($MultiJumpSfx)
 		else:
 			if multi_jump > 0:
 				# print(abs(movement.y))

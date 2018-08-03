@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://gfx/sprites/player/player-idle-1.png" type="Texture" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://sfx/super1.wav" type="AudioStream" id=23]
 [ext_resource path="res://sfx/super2.wav" type="AudioStream" id=24]
 [ext_resource path="res://Tileset.tres" type="TileSet" id=25]
+[ext_resource path="res://Gem.tscn" type="PackedScene" id=26]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -70,11 +71,11 @@ animations = [ {
 custom_solver_bias = 0.0
 extents = Vector2( 9.64428, 16 )
 
-[node name="Root" type="Node" index="0"]
+[node name="Root" type="Node"]
 
 [node name="Player" type="KinematicBody2D" parent="." index="0"]
 
-position = Vector2( 148.545, 53.8307 )
+position = Vector2( 161.415, 46.0412 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -172,5 +173,21 @@ _sections_unfolded = [ "Cell" ]
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Node" parent="." index="2" instance=ExtResource( 26 )]
+
+position = Vector2( 196.43, 150.709 )
+
+[node name="Node2" parent="." index="3" instance=ExtResource( 26 )]
+
+position = Vector2( 76.8787, 274.663 )
+
+[node name="Node3" parent="." index="4" instance=ExtResource( 26 )]
+
+position = Vector2( 101.602, 273.986 )
+
+[node name="Node4" parent="." index="5" instance=ExtResource( 26 )]
+
+position = Vector2( 126.664, 274.663 )
 
 

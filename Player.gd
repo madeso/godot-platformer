@@ -3,7 +3,7 @@ extends KinematicBody2D
 const UP = Vector2(0, -1)
 
 const MAX_SPEED = 60
-const ACCELERATION = 100
+const ACCELERATION = 200
 const AIR_ACCELERATION = 25
 const FRICTION = 100
 const CROUCH_FRICTION = 25
@@ -29,6 +29,7 @@ var on_floor_timer = 0
 var jump_timer = 0
 var crouch_timer = 0
 var multi_jump = 0
+var on_wall_timer = 0
 
 func _ready():
 	$Sprite.playing = true
@@ -51,6 +52,7 @@ func set_anim(anim):
 	
 func _physics_process(delta):
 	var on_floor = on_floor_timer > 0
+	var on_wall = on_wall_timer > 0
 	
 	if on_floor:
 		movement.y = 0
@@ -125,19 +127,22 @@ func _physics_process(delta):
 				jump_timer = -CROUCH_JUMP_EXTRA_TIME
 			else:
 				jump_timer = 0
-		elif is_on_wall():
+		elif on_wall:
 			var dir = -1
 			if $Sprite.flip_h:
 				dir = 1
 			movement.x = dir * WALL_JUMP_HOR_SPEED
 			do_jump = true
+			jump_timer = 0
+			print("walljump")
 		elif multi_jump > 0 and abs(movement.y) < MULTI_JUMP_SPEED_CHECK:
 			multi_jump -= 1
 			do_jump = true
 			jump_timer = MULTI_JUMP_TIMER
 		else:
 			if multi_jump > 0:
-				print(abs(movement.y))
+				# print(abs(movement.y))
+				pass
 			
 		if do_jump:
 			movement.y = JUMP_SPEED
@@ -160,5 +165,11 @@ func _physics_process(delta):
 		if on_floor_timer > -1:
 			on_floor_timer -= delta
 	
-	$Label.text = "  %3.3f" % [movement.y]
+	if is_on_wall():
+		on_wall_timer = FLOOR_TIMER
+	else:
+		if on_wall_timer > -1:
+			on_wall_timer -= delta
+	
+	$Label.text = "  %s" % [on_wall]
 	

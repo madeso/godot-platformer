@@ -16,11 +16,17 @@ const CROUCH_JUMP_EXTRA_TIME = 0.2
 const FLOOR_TIMER = 0.1
 const CROUCH_TIMER = 0.2
 
+# single double jump, less powerful than standard jump
+const MULTI_JUMPS = 1
+const MULTI_JUMP_TIMER = 0.2
+const MULTI_JUMP_SPEED_CHECK = 20
+
 var movement = Vector2()
 var last_anim = 0
 var on_floor_timer = 0
 var jump_timer = 0
 var crouch_timer = 0
+var multi_jump = 0
 
 func _ready():
 	$Sprite.playing = true
@@ -107,13 +113,26 @@ func _physics_process(delta):
 				set_anim(5)
 	
 	if on_floor:
-		if input_jump:
-			movement.y = JUMP_SPEED
-			on_floor_timer = -1
+		multi_jump = MULTI_JUMPS
+	
+	if input_jump:
+		var do_jump = false
+		if on_floor:
+			do_jump = true
 			if crouch_timer < CROUCH_TIMER:
 				jump_timer = -CROUCH_JUMP_EXTRA_TIME
 			else:
 				jump_timer = 0
+		elif multi_jump > 0 and abs(movement.y) < MULTI_JUMP_SPEED_CHECK:
+			multi_jump -= 1
+			jump_timer = MULTI_JUMP_TIMER
+		else:
+			if multi_jump > 0:
+				print(abs(movement.y))
+			
+		if do_jump:
+			movement.y = JUMP_SPEED
+			on_floor_timer = -1
 	
 	if not on_floor:
 		if input_jump_hold:
@@ -132,5 +151,5 @@ func _physics_process(delta):
 		if on_floor_timer > -1:
 			on_floor_timer -= delta
 	
-	$Label.text = "  %3.3f %d" % [movement.x, sign(movement.x)]
+	$Label.text = "  %3.3f" % [movement.y]
 	

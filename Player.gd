@@ -4,6 +4,7 @@ const UP = Vector2(0, -1)
 
 const MAX_SPEED = 60
 const ACCELERATION = 100
+const AIR_ACCELERATION = 25
 const FRICTION = 100
 const CROUCH_FRICTION = 25
 const AIR_FRICTION = 10
@@ -56,13 +57,17 @@ func _physics_process(delta):
 	var input_jump = Input.is_action_just_pressed("ui_up")
 	var input_jump_hold = Input.is_action_pressed("ui_up")
 	
+	var acceleration = ACCELERATION
+	if not on_floor:
+		acceleration = AIR_ACCELERATION
+	
 	if input_left and not input_right and not input_crouch:
-		movement.x = max(movement.x-ACCELERATION*delta, -MAX_SPEED)
+		movement.x = max(movement.x-acceleration*delta, -MAX_SPEED)
 		$Sprite.flip_h = true
 		if on_floor:
 			moved = true
 	elif input_right and not input_left and not input_crouch:
-		movement.x = min(movement.x+ACCELERATION*delta, MAX_SPEED)
+		movement.x = min(movement.x+acceleration*delta, MAX_SPEED)
 		$Sprite.flip_h = false
 		if on_floor:
 			moved = true

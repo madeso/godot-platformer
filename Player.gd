@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 const UP = Vector2(0, -1)
 
-const MAX_SPEED = 60
+const MAX_SPEED = 80
 const ACCELERATION = 200
 const AIR_ACCELERATION = 25
 const FRICTION = 100
@@ -171,5 +171,5 @@ func _physics_process(delta):
 		if on_wall_timer > -1:
 			on_wall_timer -= delta
 	
-	$Label.text = "  %s" % [on_wall]
+	#$Label.text = "  %s" % [on_wall]
 	

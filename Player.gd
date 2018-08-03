@@ -4,12 +4,14 @@ const UP = Vector2(0, -1)
 
 const SPEED = 60
 const GRAVITY = 260
-const JUMP_SPEED = -180
+const JUMP_SPEED = -90
+const JUMP_TIME = 0.5
 const FLOOR_TIMER = 0.1
 
 var movement = Vector2()
 var last_anim = 0
 var on_floor_timer = 0
+var jump_timer = 0
 
 func _ready():
 	$Sprite.playing = true
@@ -44,6 +46,7 @@ func _physics_process(delta):
 	var input_right = Input.is_action_pressed("ui_right")
 	var input_crouch = Input.is_action_pressed("ui_down")
 	var input_jump = Input.is_action_just_pressed("ui_up")
+	var input_jump_hold = Input.is_action_pressed("ui_up")
 	
 	if input_left and not input_right and not input_crouch:
 		movement.x = -SPEED
@@ -80,6 +83,16 @@ func _physics_process(delta):
 		if input_jump:
 			movement.y = JUMP_SPEED
 			on_floor_timer = -1
+			jump_timer = 0
+	
+	if not on_floor:
+		if input_jump_hold:
+			if jump_timer < JUMP_TIME:
+				jump_timer += delta
+			if jump_timer < JUMP_TIME:
+				movement.y = JUMP_SPEED
+		else:
+			jump_timer = JUMP_TIME + 1
 	
 	var new_movement = move_and_slide(movement, UP, 2)
 	movement.x = new_movement.x
@@ -89,5 +102,5 @@ func _physics_process(delta):
 		if on_floor_timer > -1:
 			on_floor_timer -= delta
 	
-	$Label.text = "  %3.1f  %3.1f %3.1f" % [on_floor_timer, movement.y, get_safe_margin()]
+	$Label.text = "  %3.1f" % [jump_timer]
 	

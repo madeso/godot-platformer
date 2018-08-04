@@ -34,21 +34,34 @@ var on_wall_timer = 0
 func _ready():
 	$Sprite.playing = true
 	set_safe_margin(0.01)
-	
+
+func set_collision_default():
+	$CollisionShape2D.position = Vector2(-1, 6)
+	$CollisionShape2D.shape.extents = Vector2(9, 10)
+
+func set_collision_crouch():
+	$CollisionShape2D.position = Vector2(-1, 9)
+	$CollisionShape2D.shape.extents = Vector2(9, 7)
+
 func set_anim(anim):
 	if anim == last_anim:
 		return
 	last_anim = anim
 	if anim == 1:
 		$Sprite.animation = "Idle"
+		set_collision_default()
 	if anim == 2:
 		$Sprite.animation = "Run"
+		set_collision_default()
 	if anim == 3:
 		$Sprite.animation = "Crouch"
+		set_collision_crouch()
 	if anim == 4:
 		$Sprite.animation = "Jump"
+		set_collision_default()
 	if anim == 5:
 		$Sprite.animation = "Fall"
+		set_collision_default()
 
 func play_sound(sound):
 	# sound.play()

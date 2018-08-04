@@ -2,8 +2,8 @@ extends KinematicBody2D
 
 const UP = Vector2(0, -1)
 
-const MAX_SPEED = 80
-const ACCELERATION = 200
+const MAX_SPEED = 100
+const ACCELERATION = 300
 const AIR_ACCELERATION = 25
 const FRICTION = 170
 const CROUCH_FRICTION = 25
@@ -19,7 +19,7 @@ const CROUCH_TIMER = 0.2
 # single double jump, less powerful than standard jump
 const MULTI_JUMPS = 1
 const MULTI_JUMP_TIMER = 0.2
-const MULTI_JUMP_SPEED_CHECK = 30
+const MULTI_JUMP_SPEED_CHECK = 40
 
 const WALL_JUMP_HOR_SPEED = 60
 
@@ -140,6 +140,7 @@ func _physics_process(delta):
 			movement.x = dir * WALL_JUMP_HOR_SPEED
 			do_jump = true
 			jump_timer = 0
+			multi_jump = MULTI_JUMPS
 			play_sound($JumpWallSfx)
 		elif multi_jump > 0 and abs(movement.y) < MULTI_JUMP_SPEED_CHECK:
 			multi_jump -= 1
@@ -149,6 +150,7 @@ func _physics_process(delta):
 		else:
 			if multi_jump > 0:
 				# print(abs(movement.y))
+				$Label.text = "  %3.3f" % [movement.y]
 				pass
 			
 		if do_jump:
@@ -164,8 +166,8 @@ func _physics_process(delta):
 		else:
 			jump_timer = JUMP_TIME + 1
 	
-	var new_movement = move_and_slide(movement, UP, 0.1)
-	movement.x = new_movement.x
+	movement = move_and_slide(movement, UP, 0.1)
+	
 	if is_on_floor():
 		on_floor_timer = FLOOR_TIMER
 	else:

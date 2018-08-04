@@ -21,7 +21,7 @@ animations = [ {
 custom_solver_bias = 0.0
 extents = Vector2( 6.16809, 5.1462 )
 
-[node name="Node" type="Node2D"]
+[node name="Node" type="Node2D" index="0"]
 
 [node name="Gem" type="Area2D" parent="." index="0"]
 
@@ -42,7 +42,7 @@ __meta__ = {
 
 frames = SubResource( 1 )
 animation = "default"
-frame = 4
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gem" index="1"]

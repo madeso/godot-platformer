@@ -70,18 +70,24 @@ func set_anim(anim):
 func play_sound(sound):
 	# sound.play()
 	pass
+	
+func get_collision_box_y():
+	return {
+		y=$CollisionShape2D.position.y,
+		half=$CollisionShape2D.shape.extents.y
+		}
 
-func can_stand(delta):
-	if last_anim == 3:
-		var crouch_collision = test_move(transform, movement * delta)
-		if crouch_collision:
-			print("possible unhandled case: unable to move with crouch, returning true")
-			return true
+func can_stand():
+	if last_anim == Anim.Crouch:
 		set_collision_default()
-		var default_collision = test_move(transform, movement * delta)
+		var def = get_collision_box_y()
 		set_collision_crouch()
-		print(default_collision)
-		return not default_collision
+		var cr = get_collision_box_y()
+		var dy = (def.y - def.half) - (cr.y - cr.half)
+		var lower_dy = (def.y + def.half) - (cr.y + cr.half)
+		assert lower_dy == 0
+		var stand_col = test_move(transform, Vector2(0, dy))
+		return not stand_col
 	else:
 		return true
 	
@@ -102,7 +108,7 @@ func _physics_process(delta):
 	var input_jump = Input.is_action_just_pressed("ui_up")
 	var input_jump_hold = Input.is_action_pressed("ui_up")
 	
-	if not input_crouch and last_anim == Anim.Crouch and not can_stand(delta):
+	if not input_crouch and last_anim == Anim.Crouch and not can_stand():
 		input_crouch = true
 	
 	var acceleration = ACCELERATION
@@ -157,7 +163,7 @@ func _physics_process(delta):
 	if on_floor:
 		multi_jump = MULTI_JUMPS
 	
-	if input_jump:
+	if input_jump and not input_crouch:
 		var do_jump = false
 		if on_floor:
 			do_jump = true

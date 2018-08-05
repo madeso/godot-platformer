@@ -66,6 +66,20 @@ func set_anim(anim):
 func play_sound(sound):
 	# sound.play()
 	pass
+
+func can_stand(delta):
+	if last_anim == 3:
+		var crouch_collision = test_move(transform, movement * delta)
+		if crouch_collision:
+			print("possible unhandled case: unable to move with crouch, returning true")
+			return true
+		set_collision_default()
+		var default_collision = test_move(transform, movement * delta)
+		set_collision_crouch()
+		print(default_collision)
+		return not default_collision
+	else:
+		return true
 	
 func _physics_process(delta):
 	var on_floor = on_floor_timer > 0
@@ -83,6 +97,9 @@ func _physics_process(delta):
 	var input_crouch = Input.is_action_pressed("ui_down")
 	var input_jump = Input.is_action_just_pressed("ui_up")
 	var input_jump_hold = Input.is_action_pressed("ui_up")
+	
+	if not input_crouch and last_anim == 3 and not can_stand(delta):
+		input_crouch = true
 	
 	var acceleration = ACCELERATION
 	if not on_floor:

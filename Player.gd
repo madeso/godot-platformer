@@ -23,8 +23,12 @@ const MULTI_JUMP_SPEED_CHECK = 40
 
 const WALL_JUMP_HOR_SPEED = 60
 
+enum Anim {
+	INVALID, Idle, Run, Crouch, Jump, Fall
+}
+
 var movement = Vector2()
-var last_anim = 0
+var last_anim = Anim.INVALID
 var on_floor_timer = 0
 var jump_timer = 0
 var crouch_timer = 0
@@ -47,19 +51,19 @@ func set_anim(anim):
 	if anim == last_anim:
 		return
 	last_anim = anim
-	if anim == 1:
+	if anim == Anim.Idle:
 		$Sprite.animation = "Idle"
 		set_collision_default()
-	if anim == 2:
+	if anim == Anim.Run:
 		$Sprite.animation = "Run"
 		set_collision_default()
-	if anim == 3:
+	if anim == Anim.Crouch:
 		$Sprite.animation = "Crouch"
 		set_collision_crouch()
-	if anim == 4:
+	if anim == Anim.Jump:
 		$Sprite.animation = "Jump"
 		set_collision_default()
-	if anim == 5:
+	if anim == Anim.Fall:
 		$Sprite.animation = "Fall"
 		set_collision_default()
 
@@ -98,7 +102,7 @@ func _physics_process(delta):
 	var input_jump = Input.is_action_just_pressed("ui_up")
 	var input_jump_hold = Input.is_action_pressed("ui_up")
 	
-	if not input_crouch and last_anim == 3 and not can_stand(delta):
+	if not input_crouch and last_anim == Anim.Crouch and not can_stand(delta):
 		input_crouch = true
 	
 	var acceleration = ACCELERATION
@@ -137,18 +141,18 @@ func _physics_process(delta):
 			crouch_timer = CROUCH_TIMER + 1
 	
 	if input_crouch and on_floor:
-		set_anim(3)
+		set_anim(Anim.Crouch)
 	else:
 		if on_floor:
 			if moved:
-				set_anim(2)
+				set_anim(Anim.Run)
 			else:
-				set_anim(1)
+				set_anim(Anim.Idle)
 		else:
 			if movement.y < 0:
-				set_anim(4)
+				set_anim(Anim.Jump)
 			else:
-				set_anim(5)
+				set_anim(Anim.Fall)
 	
 	if on_floor:
 		multi_jump = MULTI_JUMPS

@@ -37,6 +37,10 @@ var crouch_timer = 0
 var multi_jump = 0
 var on_wall_timer = 0
 
+func pickup_gem():
+	print("todo: add score or something")
+	Dev.play_sound($GemSfx)
+
 func _ready():
 	$Sprite.playing = true
 	set_safe_margin(0.01)

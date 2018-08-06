@@ -21,7 +21,7 @@ animations = [ {
 custom_solver_bias = 0.0
 extents = Vector2( 6.16809, 5.1462 )
 
-[node name="Node" type="Node2D" index="0"]
+[node name="Node" type="Node2D"]
 
 [node name="Gem" type="Area2D" parent="." index="0"]
 

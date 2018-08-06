@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://gfx/sprites/player/player-idle-1.png" type="Texture" id=2]
@@ -24,8 +24,9 @@
 [ext_resource path="res://sfx/jump2.wav" type="AudioStream" id=22]
 [ext_resource path="res://sfx/super1.wav" type="AudioStream" id=23]
 [ext_resource path="res://sfx/super2.wav" type="AudioStream" id=24]
-[ext_resource path="res://Tileset.tres" type="TileSet" id=25]
-[ext_resource path="res://Gem.tscn" type="PackedScene" id=26]
+[ext_resource path="res://sfx/pickup2.wav" type="AudioStream" id=25]
+[ext_resource path="res://Tileset.tres" type="TileSet" id=26]
+[ext_resource path="res://Gem.tscn" type="PackedScene" id=27]
 
 [sub_resource type="RectangleShape2D" id=2]
 
@@ -177,10 +178,19 @@ editor_draw_limits = false
 editor_draw_drag_margin = true
 _sections_unfolded = [ "Editor", "Smoothing" ]
 
+[node name="GemSfx" type="AudioStreamPlayer" parent="Player" index="8"]
+
+stream = ExtResource( 25 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
 [node name="TileMap" type="TileMap" parent="." index="1"]
 
 mode = 0
-tile_set = ExtResource( 25 )
+tile_set = ExtResource( 26 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -201,19 +211,19 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Node" parent="." index="2" instance=ExtResource( 26 )]
+[node name="Node" parent="." index="2" instance=ExtResource( 27 )]
 
 position = Vector2( 196.43, 150.709 )
 
-[node name="Node2" parent="." index="3" instance=ExtResource( 26 )]
+[node name="Node2" parent="." index="3" instance=ExtResource( 27 )]
 
 position = Vector2( 76.8787, 274.663 )
 
-[node name="Node3" parent="." index="4" instance=ExtResource( 26 )]
+[node name="Node3" parent="." index="4" instance=ExtResource( 27 )]
 
 position = Vector2( 101.602, 273.986 )
 
-[node name="Node4" parent="." index="5" instance=ExtResource( 26 )]
+[node name="Node4" parent="." index="5" instance=ExtResource( 27 )]
 
 position = Vector2( 126.664, 274.663 )
 

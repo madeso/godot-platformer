@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+var Dev = preload("res://Dev.gd")
+
 const UP = Vector2(0, -1)
 
 const MAX_SPEED = 100
@@ -66,10 +68,6 @@ func set_anim(anim):
 	if anim == Anim.Fall:
 		$Sprite.animation = "Fall"
 		set_collision_default()
-
-func play_sound(sound):
-	# sound.play()
-	pass
 	
 func get_collision_box_y():
 	return {
@@ -169,9 +167,9 @@ func _physics_process(delta):
 			do_jump = true
 			if crouch_timer < CROUCH_TIMER:
 				jump_timer = -CROUCH_JUMP_EXTRA_TIME
-				play_sound($JumpCrouch)
+				Dev.play_sound($JumpCrouch)
 			else:
-				play_sound($JumpSfx)
+				Dev.play_sound($JumpSfx)
 				jump_timer = 0
 		elif on_wall:
 			var dir = -1
@@ -181,12 +179,12 @@ func _physics_process(delta):
 			do_jump = true
 			jump_timer = 0
 			multi_jump = MULTI_JUMPS
-			play_sound($JumpWallSfx)
+			Dev.play_sound($JumpWallSfx)
 		elif multi_jump > 0 and abs(movement.y) < MULTI_JUMP_SPEED_CHECK:
 			multi_jump -= 1
 			do_jump = true
 			jump_timer = MULTI_JUMP_TIMER
-			play_sound($MultiJumpSfx)
+			Dev.play_sound($MultiJumpSfx)
 		else:
 			if multi_jump > 0:
 				# print(abs(movement.y))

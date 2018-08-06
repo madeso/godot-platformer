@@ -128,6 +128,8 @@ func _physics_process(delta):
 		if input_crouch:
 			crouch_timer = 0
 			friction = CROUCH_FRICTION
+			if on_floor and not can_stand():
+				friction = 0
 		if not on_floor:
 			friction = AIR_FRICTION
 		# do friction

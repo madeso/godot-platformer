@@ -7,6 +7,11 @@
 custom_solver_bias = 0.0
 extents = Vector2( 8, 8 )
 
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16, 16 )
+
 [sub_resource type="ConvexPolygonShape2D" id=3]
 
 custom_solver_bias = 0.0
@@ -36,11 +41,6 @@ points = PoolVector2Array( -8, 0, 8, -16, 8, 16, -8, 16 )
 
 custom_solver_bias = 0.0
 points = PoolVector2Array( -8, -16, 8, 0, 8, 16, -8, 16 )
-
-[sub_resource type="RectangleShape2D" id=2]
-
-custom_solver_bias = 0.0
-extents = Vector2( 16, 16 )
 
 [resource]
 
@@ -209,7 +209,7 @@ extents = Vector2( 16, 16 )
 11/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
-"shape": SubResource( 3 ),
+"shape": SubResource( 2 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 16, 16 )
 } ]
 12/name = "sunny13"
@@ -223,7 +223,7 @@ extents = Vector2( 16, 16 )
 12/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
-"shape": SubResource( 4 ),
+"shape": SubResource( 3 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 16, 16 )
 } ]
 13/name = "sunny14"
@@ -237,7 +237,7 @@ extents = Vector2( 16, 16 )
 13/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
-"shape": SubResource( 5 ),
+"shape": SubResource( 4 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 16, 16 )
 } ]
 14/name = "sunny15"
@@ -251,7 +251,7 @@ extents = Vector2( 16, 16 )
 14/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
-"shape": SubResource( 6 ),
+"shape": SubResource( 5 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 16, 16 )
 } ]
 15/name = "sunny16"
@@ -265,7 +265,7 @@ extents = Vector2( 16, 16 )
 15/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
-"shape": SubResource( 7 ),
+"shape": SubResource( 6 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 8, 16 )
 } ]
 16/name = "sunny17"
@@ -279,7 +279,7 @@ extents = Vector2( 16, 16 )
 16/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
-"shape": SubResource( 8 ),
+"shape": SubResource( 7 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 8, 16 )
 } ]
 17/name = "stone1"
@@ -394,7 +394,7 @@ extents = Vector2( 16, 16 )
 "shape": SubResource( 1 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 8, 8 )
 } ]
-25/name = "stoneSmall"
+25/name = "stone5"
 25/texture = ExtResource( 1 )
 25/tex_offset = Vector2( 0, 0 )
 25/modulate = Color( 1, 1, 1, 1 )
@@ -419,7 +419,7 @@ extents = Vector2( 16, 16 )
 26/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
-"shape": SubResource( 2 ),
+"shape": SubResource( 8 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 16, 16 )
 } ]
 27/name = "grass1"
@@ -727,7 +727,7 @@ extents = Vector2( 16, 16 )
 56/texture = ExtResource( 1 )
 56/tex_offset = Vector2( 0, 0 )
 56/modulate = Color( 1, 1, 1, 1 )
-56/region = Rect2( 64, 288, 16, 16 )
+56/region = Rect2( 64, 272, 16, 16 )
 56/is_autotile = false
 56/occluder_offset = Vector2( 0, 0 )
 56/navigation_offset = Vector2( 0, 0 )

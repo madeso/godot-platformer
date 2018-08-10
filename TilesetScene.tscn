@@ -7,42 +7,42 @@
 custom_solver_bias = 0.0
 extents = Vector2( 8, 8 )
 
-[sub_resource type="ConvexPolygonShape2D" id=3]
+[sub_resource type="ConvexPolygonShape2D" id=2]
 
 custom_solver_bias = 0.0
 points = PoolVector2Array( -16, -16, 16, -16, 16, 16 )
 
-[sub_resource type="ConvexPolygonShape2D" id=4]
+[sub_resource type="ConvexPolygonShape2D" id=3]
 
 custom_solver_bias = 0.0
 points = PoolVector2Array( -16, -16, 16, -16, -16, 16 )
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=4]
 
 custom_solver_bias = 0.0
 points = PoolVector2Array( -16, 0, 16, -16, 16, 0, -16, 16 )
 
-[sub_resource type="ConvexPolygonShape2D" id=6]
+[sub_resource type="ConvexPolygonShape2D" id=5]
 
 custom_solver_bias = 0.0
 points = PoolVector2Array( -16, 0, -16, -16, 16, 0, 16, 16 )
 
-[sub_resource type="ConvexPolygonShape2D" id=7]
+[sub_resource type="ConvexPolygonShape2D" id=6]
 
 custom_solver_bias = 0.0
 points = PoolVector2Array( -8, 0, 8, -16, 8, 16, -8, 16 )
 
-[sub_resource type="ConvexPolygonShape2D" id=8]
+[sub_resource type="ConvexPolygonShape2D" id=7]
 
 custom_solver_bias = 0.0
 points = PoolVector2Array( -8, -16, 8, 0, 8, 16, -8, 16 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=8]
 
 custom_solver_bias = 0.0
 extents = Vector2( 16, 16 )
 
-[node name="TilesetScene" type="Node" index="0"]
+[node name="TilesetScene" type="Node"]
 
 [node name="sunny00" type="Sprite" parent="." index="0"]
 
@@ -388,7 +388,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="CollisionShape" type="CollisionShape2D" parent="sunny12/StaticBody2D" index="0"]
 
 position = Vector2( 16, 16 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="sunny13" type="Sprite" parent="." index="12"]
@@ -417,7 +417,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="CollisionShape" type="CollisionShape2D" parent="sunny13/StaticBody2D" index="0"]
 
 position = Vector2( 16, 16 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="sunny14" type="Sprite" parent="." index="13"]
@@ -446,7 +446,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="CollisionShape" type="CollisionShape2D" parent="sunny14/StaticBody2D" index="0"]
 
 position = Vector2( 16, 16 )
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="sunny15" type="Sprite" parent="." index="14"]
@@ -475,7 +475,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="CollisionShape" type="CollisionShape2D" parent="sunny15/StaticBody2D" index="0"]
 
 position = Vector2( 16, 16 )
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="sunny16" type="Sprite" parent="." index="15"]
@@ -504,7 +504,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="CollisionShape" type="CollisionShape2D" parent="sunny16/StaticBody2D" index="0"]
 
 position = Vector2( 8, 16 )
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="sunny17" type="Sprite" parent="." index="16"]
@@ -533,7 +533,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="CollisionShape" type="CollisionShape2D" parent="sunny17/StaticBody2D" index="0"]
 
 position = Vector2( 8, 16 )
-shape = SubResource( 8 )
+shape = SubResource( 7 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="stone1" type="Sprite" parent="." index="17"]
@@ -768,9 +768,9 @@ position = Vector2( 8, 8 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="stoneSmall" type="Sprite" parent="." index="25"]
+[node name="stone5" type="Sprite" parent="." index="25"]
 
-position = Vector2( 192, 0 )
+position = Vector2( 128, 32 )
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
@@ -780,7 +780,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="stoneSmall" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="stone5" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -791,7 +791,7 @@ friction = 1.0
 bounce = 0.0
 _sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape" type="CollisionShape2D" parent="stoneSmall/StaticBody2D" index="0"]
+[node name="CollisionShape" type="CollisionShape2D" parent="stone5/StaticBody2D" index="0"]
 
 position = Vector2( 8, 8 )
 shape = SubResource( 1 )
@@ -823,7 +823,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="CollisionShape" type="CollisionShape2D" parent="stoneBig/StaticBody2D" index="0"]
 
 position = Vector2( 16, 16 )
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="grass1" type="Sprite" parent="." index="27"]
@@ -1316,7 +1316,7 @@ position = Vector2( 192, 320 )
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
-region_rect = Rect2( 64, 288, 16, 16 )
+region_rect = Rect2( 64, 272, 16, 16 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true

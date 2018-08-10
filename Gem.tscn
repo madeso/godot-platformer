@@ -21,11 +21,11 @@ animations = [ {
 custom_solver_bias = 0.0
 extents = Vector2( 6.16809, 5.1462 )
 
-[node name="Node" type="Node2D"]
+[node name="Node" type="Node2D" index="0"]
 
 [node name="Gem" type="Area2D" parent="." index="0"]
 
-input_pickable = true
+input_pickable = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
@@ -33,7 +33,7 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Pickable", "Transform" ]
 __meta__ = {
 "_edit_group_": true
 }
@@ -42,7 +42,6 @@ __meta__ = {
 
 frames = SubResource( 1 )
 animation = "default"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gem" index="1"]

@@ -130,9 +130,16 @@ scroll_limit_end = Vector2( 0, 0 )
 scroll_ignore_camera_zoom = true
 _sections_unfolded = [ "Scroll" ]
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground" index="0"]
+[node name="BackParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" index="0"]
 
-position = Vector2( 320, 180 )
+motion_scale = Vector2( 1.3, 0 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 640, 0 )
+_sections_unfolded = [ "Motion", "Transform" ]
+
+[node name="Back" type="Sprite" parent="ParallaxBackground/BackParallaxLayer" index="0"]
+
+position = Vector2( 320, 0 )
 scale = Vector2( 1.7, 1.7 )
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Offset", "Transform" ]

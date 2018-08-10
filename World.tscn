@@ -1,32 +1,33 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Gem.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Player.gd" type="Script" id=3]
-[ext_resource path="res://gfx/sprites/player/player-idle-1.png" type="Texture" id=4]
-[ext_resource path="res://gfx/sprites/player/player-idle-2.png" type="Texture" id=5]
-[ext_resource path="res://gfx/sprites/player/player-idle-3.png" type="Texture" id=6]
-[ext_resource path="res://gfx/sprites/player/player-idle-4.png" type="Texture" id=7]
-[ext_resource path="res://gfx/sprites/player/player-run-1.png" type="Texture" id=8]
-[ext_resource path="res://gfx/sprites/player/player-run-2.png" type="Texture" id=9]
-[ext_resource path="res://gfx/sprites/player/player-run-3.png" type="Texture" id=10]
-[ext_resource path="res://gfx/sprites/player/player-run-4.png" type="Texture" id=11]
-[ext_resource path="res://gfx/sprites/player/player-run-5.png" type="Texture" id=12]
-[ext_resource path="res://gfx/sprites/player/player-run-6.png" type="Texture" id=13]
-[ext_resource path="res://gfx/sprites/player/player-climb-1.png" type="Texture" id=14]
-[ext_resource path="res://gfx/sprites/player/player-climb-2.png" type="Texture" id=15]
-[ext_resource path="res://gfx/sprites/player/player-climb-3.png" type="Texture" id=16]
-[ext_resource path="res://gfx/sprites/player/player-hurt-1.png" type="Texture" id=17]
-[ext_resource path="res://gfx/sprites/player/player-hurt-2.png" type="Texture" id=18]
-[ext_resource path="res://gfx/sprites/player/player-crouch-1.png" type="Texture" id=19]
-[ext_resource path="res://gfx/sprites/player/player-crouch-2.png" type="Texture" id=20]
-[ext_resource path="res://gfx/sprites/player/player-jump-1.png" type="Texture" id=21]
-[ext_resource path="res://gfx/sprites/player/player-jump-2.png" type="Texture" id=22]
-[ext_resource path="res://sfx/jump1.wav" type="AudioStream" id=23]
-[ext_resource path="res://sfx/jump2.wav" type="AudioStream" id=24]
-[ext_resource path="res://sfx/super1.wav" type="AudioStream" id=25]
-[ext_resource path="res://sfx/super2.wav" type="AudioStream" id=26]
-[ext_resource path="res://sfx/pickup2.wav" type="AudioStream" id=27]
+[ext_resource path="res://gfx/environment/back.png" type="Texture" id=3]
+[ext_resource path="res://Player.gd" type="Script" id=4]
+[ext_resource path="res://gfx/sprites/player/player-idle-1.png" type="Texture" id=5]
+[ext_resource path="res://gfx/sprites/player/player-idle-2.png" type="Texture" id=6]
+[ext_resource path="res://gfx/sprites/player/player-idle-3.png" type="Texture" id=7]
+[ext_resource path="res://gfx/sprites/player/player-idle-4.png" type="Texture" id=8]
+[ext_resource path="res://gfx/sprites/player/player-run-1.png" type="Texture" id=9]
+[ext_resource path="res://gfx/sprites/player/player-run-2.png" type="Texture" id=10]
+[ext_resource path="res://gfx/sprites/player/player-run-3.png" type="Texture" id=11]
+[ext_resource path="res://gfx/sprites/player/player-run-4.png" type="Texture" id=12]
+[ext_resource path="res://gfx/sprites/player/player-run-5.png" type="Texture" id=13]
+[ext_resource path="res://gfx/sprites/player/player-run-6.png" type="Texture" id=14]
+[ext_resource path="res://gfx/sprites/player/player-climb-1.png" type="Texture" id=15]
+[ext_resource path="res://gfx/sprites/player/player-climb-2.png" type="Texture" id=16]
+[ext_resource path="res://gfx/sprites/player/player-climb-3.png" type="Texture" id=17]
+[ext_resource path="res://gfx/sprites/player/player-hurt-1.png" type="Texture" id=18]
+[ext_resource path="res://gfx/sprites/player/player-hurt-2.png" type="Texture" id=19]
+[ext_resource path="res://gfx/sprites/player/player-crouch-1.png" type="Texture" id=20]
+[ext_resource path="res://gfx/sprites/player/player-crouch-2.png" type="Texture" id=21]
+[ext_resource path="res://gfx/sprites/player/player-jump-1.png" type="Texture" id=22]
+[ext_resource path="res://gfx/sprites/player/player-jump-2.png" type="Texture" id=23]
+[ext_resource path="res://sfx/jump1.wav" type="AudioStream" id=24]
+[ext_resource path="res://sfx/jump2.wav" type="AudioStream" id=25]
+[ext_resource path="res://sfx/super1.wav" type="AudioStream" id=26]
+[ext_resource path="res://sfx/super2.wav" type="AudioStream" id=27]
+[ext_resource path="res://sfx/pickup2.wav" type="AudioStream" id=28]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -36,37 +37,37 @@ extents = Vector2( 9, 7 )
 [sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
 "loop": true,
 "name": "Run",
 "speed": 8.0
 }, {
-"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 16 ) ],
+"frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 15 ), ExtResource( 17 ) ],
 "loop": true,
 "name": "Climb",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 17 ), ExtResource( 18 ) ],
+"frames": [ ExtResource( 18 ), ExtResource( 19 ) ],
 "loop": true,
 "name": "Hurt",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 19 ), ExtResource( 20 ) ],
+"frames": [ ExtResource( 20 ), ExtResource( 21 ) ],
 "loop": true,
 "name": "Crouch",
 "speed": 3.0
 }, {
-"frames": [ ExtResource( 21 ) ],
+"frames": [ ExtResource( 22 ) ],
 "loop": true,
 "name": "Jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 22 ) ],
+"frames": [ ExtResource( 23 ) ],
 "loop": true,
 "name": "Fall",
 "speed": 5.0
@@ -114,15 +115,36 @@ position = Vector2( 101.602, 273.986 )
 
 position = Vector2( 126.664, 274.663 )
 
-[node name="Player" type="KinematicBody2D" parent="." index="5"]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." index="5"]
 
-editor/display_folded = true
-position = Vector2( 161.415, 46.0412 )
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+scroll_offset = Vector2( 0, 0 )
+scroll_base_offset = Vector2( 0, 0 )
+scroll_base_scale = Vector2( 1, 1 )
+scroll_limit_begin = Vector2( 0, 0 )
+scroll_limit_end = Vector2( 0, 0 )
+scroll_ignore_camera_zoom = true
+_sections_unfolded = [ "Scroll" ]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground" index="0"]
+
+position = Vector2( 320, 180 )
+scale = Vector2( 1.7, 1.7 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="Player" type="KinematicBody2D" parent="." index="6"]
+
+position = Vector2( 162.325, 46.0412 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_group_": true
@@ -138,6 +160,7 @@ _sections_unfolded = [ "Transform" ]
 
 frames = SubResource( 2 )
 animation = "Crouch"
+_sections_unfolded = [ "Transform" ]
 
 [node name="Label" type="Label" parent="Player" index="2"]
 
@@ -157,43 +180,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="JumpSfx" type="AudioStreamPlayer" parent="Player" index="3"]
-
-stream = ExtResource( 23 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-mix_target = 0
-bus = "Master"
-
-[node name="MultiJumpSfx" type="AudioStreamPlayer" parent="Player" index="4"]
-
-stream = ExtResource( 24 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-mix_target = 0
-bus = "Master"
-
-[node name="JumpWallSfx" type="AudioStreamPlayer" parent="Player" index="5"]
-
-stream = ExtResource( 25 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-mix_target = 0
-bus = "Master"
-
-[node name="JumpCrouch" type="AudioStreamPlayer" parent="Player" index="6"]
-
-stream = ExtResource( 26 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-mix_target = 0
-bus = "Master"
-
-[node name="Camera2D" type="Camera2D" parent="Player" index="7"]
+[node name="Camera2D" type="Camera2D" parent="Player" index="3"]
 
 anchor_mode = 1
 rotating = false
@@ -216,12 +203,47 @@ drag_margin_right = 0.2
 drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
-editor_draw_drag_margin = true
-_sections_unfolded = [ "Editor", "Smoothing" ]
+editor_draw_drag_margin = false
+
+[node name="JumpSfx" type="AudioStreamPlayer" parent="Player" index="4"]
+
+stream = ExtResource( 24 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="MultiJumpSfx" type="AudioStreamPlayer" parent="Player" index="5"]
+
+stream = ExtResource( 25 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="JumpWallSfx" type="AudioStreamPlayer" parent="Player" index="6"]
+
+stream = ExtResource( 26 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="JumpCrouch" type="AudioStreamPlayer" parent="Player" index="7"]
+
+stream = ExtResource( 27 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 [node name="GemSfx" type="AudioStreamPlayer" parent="Player" index="8"]
 
-stream = ExtResource( 27 )
+stream = ExtResource( 28 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
